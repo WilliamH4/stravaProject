@@ -48,7 +48,7 @@ def is_in_chosen_date_range(start_date_str):
         print("Date parse error:", e)
         return False
 
-# Calculate miles run in March 2025 
+# Calculate miles run since date
 def calculate_march_miles(activities):
     march_runs = [a for a in activities if a['type'] == 'Run' and is_in_chosen_date_range(a['start_date'])]
     for run in march_runs:
