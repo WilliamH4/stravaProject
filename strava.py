@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime
 
-access_token = "356c262be6d6ca2f53a76e01f012ad476b5f4177"
+access_token = "2a3685738ed8488aad9fb5892f3a4843396cb41f"
 
 # === Strava API URL to fetch activities ===
 url = "https://www.strava.com/api/v3/athlete/activities"
@@ -11,8 +11,8 @@ headers = {
     "Authorization": f"Bearer {access_token}"
 }
 
-start_date = datetime(2025, 4, 28)
-end_date   = datetime(2025, 4, 29)
+start_date = datetime(2025, 1, 1)
+end_date   = datetime(2026, 1, 1)
 
 
 after_timestamp = int(start_date.timestamp())
@@ -56,7 +56,7 @@ def calculate_march_miles(activities):
     total_miles = sum(a['distance'] / 1609.34 for a in march_runs)
     
     print(f"Total runs after choosen date: {len(march_runs)}")
-    print(f"Total miles: {total_miles:.4f}")
+    print(f"Total miles: {total_miles:.2f}")
     
     return total_miles
 
