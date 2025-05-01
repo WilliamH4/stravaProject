@@ -28,9 +28,9 @@ def callback():
     })
     token_data = token_response.json()
     # Save tokens here (for now just print to console)
-    print("Access Token:", token_data['access_token'])
+    print("Access Token:", token_data['access_token'],'ran')
     print("Refresh Token:", token_data['refresh_token'])
-    return "Authorization complete! Tokens printed to console."
+    return "Authorization complete! Tokens printed to console. you may close this tab now"
 
 if __name__ == "__main__":
     app.run(debug=True)
