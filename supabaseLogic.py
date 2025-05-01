@@ -38,4 +38,5 @@ def save_token(user_id, access_token, refresh_token, expires_at, athlete):
 
 def get_tokens(user_id):
     response = supabase.table("user_tokens").select("*").eq("user_id", user_id).single().execute()
+    print(response.data)
     return response.data
