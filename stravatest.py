@@ -8,6 +8,8 @@ from supabase import create_client
 
 import os
 
+import strava
+
 
 
 
@@ -33,12 +35,16 @@ def index():
     auth_url = f"https://www.strava.com/oauth/authorize?client_id={CLIENT_ID}&response_type=code&redirect_uri={REDIRECT_URI}&approval_prompt=force&scope=activity:read_all"
     return render_template("index.html", auth_url=auth_url)
 
-def save_token(user_id, access_token, refresh_token, expires_at):
-    response=supabase.table('user_tokens').upsert({
+def save_token(user_id, access_token, refresh_token, expires_at, athlete):
+    response = supabase.table('user_tokens').upsert({
         "user_id": user_id,
         "access_token": access_token,
         "refresh_token": refresh_token,
-        "expires_at": expires_at
+        "expires_at": expires_at,
+        "athlete_firstname": athlete["firstname"],
+        "athlete_lastname": athlete["lastname"],
+        "athlete_username": athlete["username"],
+        "athlete_profile": athlete["profile"]
     }).execute()
     # if response.status_code != 201 and response.status_code != 200:
     #     print("Error saving tokens:", response.data)
@@ -59,7 +65,7 @@ def callback():
     # Save tokens here (for now just print to console)
     print("Access Token:", token_data['access_token'])
     print("Refresh Token:", token_data['refresh_token'])
-    save_token(token_data['athlete']['id'],token_data['access_token'],token_data['refresh_token'],token_data['expires_at'])
+    save_token(token_data['athlete']['id'],token_data['access_token'],token_data['refresh_token'],token_data['expires_at'],token_data['athlete'] )
     return "Authorization complete! Tokens printed to console. you may close this tab now"
 
 if __name__ == "__main__":
