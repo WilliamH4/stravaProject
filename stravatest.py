@@ -10,7 +10,7 @@ import os
 
 #import strava
 
-import supabaseLogic
+from supabaseLogic import *
 
 
 app = Flask(__name__)
