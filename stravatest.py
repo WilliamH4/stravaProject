@@ -16,7 +16,11 @@ import supabaseLogic
 app = Flask(__name__)
 
 
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+REDIRECT_URI = os.getenv("REDIRECT_URI")
 
+print(CLIENT_ID)
 
 @app.route("/")
 def index():
