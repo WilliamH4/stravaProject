@@ -1,6 +1,9 @@
+from dotenv import load_dotenv
+load_dotenv()
 from supabase import create_client
 import os
-
+from flask import Flask, redirect, request, render_template
+import requests
 
 url = os.getenv("SUPABASE_URL")
 key = os.getenv("SUPABASE_KEY")
