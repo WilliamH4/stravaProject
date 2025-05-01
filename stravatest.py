@@ -26,7 +26,7 @@ def index():
     return render_template("index.html", auth_url=auth_url)
 
 def save_token(user_id, access_token, refresh_token, expires_at):
-    supabase.table('user_tokens').upsert({
+    response=supabase.table('user_tokens').upsert({
         "user_id": user_id,
         "access_token": access_token,
         "refresh_token": refresh_token,
@@ -51,7 +51,7 @@ def callback():
     # Save tokens here (for now just print to console)
     print("Access Token:", token_data['access_token'])
     print("Refresh Token:", token_data['refresh_token'])
-    save_token(token_data['user_id'],token_data['access_token'],token_data['refresh_token'],token_data['expires_at'])
+    save_token(token_data['athlete']['id'],token_data['access_token'],token_data['refresh_token'],token_data['expires_at'])
     return "Authorization complete! Tokens printed to console. you may close this tab now"
 
 if __name__ == "__main__":
