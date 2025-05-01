@@ -10,8 +10,6 @@ print("SUPABASE_KEY:", key)
 
 supabase = create_client(url, key)
 
-app = Flask(__name__)
-
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 REDIRECT_URI = os.getenv("REDIRECT_URI")
