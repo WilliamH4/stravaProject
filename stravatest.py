@@ -1,14 +1,20 @@
-import os
 from flask import Flask, redirect, request, render_template
 import requests
 from dotenv import load_dotenv
 from supabase import create_client
 
 load_dotenv()
+import os
+
+
 
 
 url = os.getenv("SUPABASE_URL")
 key = os.getenv("SUPABASE_KEY")
+
+print("SUPABASE_URL:", url)
+print("SUPABASE_KEY:", key)
+
 
 supabase = create_client(url, key)
 
