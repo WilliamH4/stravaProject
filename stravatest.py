@@ -4,12 +4,14 @@ import requests
 from dotenv import load_dotenv
 from supabase import create_client
 
+load_dotenv()
+
+
 url = os.getenv("SUPABASE_URL")
 key = os.getenv("SUPABASE_KEY")
 
 supabase = create_client(url, key)
 
-load_dotenv()
 app = Flask(__name__)
 
 CLIENT_ID = os.getenv("CLIENT_ID")
@@ -30,6 +32,10 @@ def save_token(user_id, access_token, refresh_token, expires_at):
         "refresh_token": refresh_token,
         "expires_at": expires_at
     }).execute()
+    if response.status_code != 201 and response.status_code != 200:
+        print("Error saving tokens:", response.data)
+    else:
+        print("Tokens saved successfully")
 
 
 @app.route("/callback")
@@ -45,7 +51,7 @@ def callback():
     # Save tokens here (for now just print to console)
     print("Access Token:", token_data['access_token'])
     print("Refresh Token:", token_data['refresh_token'])
-    save_token(CLIENT_ID,token_data['access_token'],token_data['refresh_token'],token_data['expires_at'])
+    save_token(token_data['user_id'],token_data['access_token'],token_data['refresh_token'],token_data['expires_at'])
     return "Authorization complete! Tokens printed to console. you may close this tab now"
 
 if __name__ == "__main__":
