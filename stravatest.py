@@ -1,9 +1,11 @@
+from dotenv import load_dotenv
+load_dotenv()
+
+
 from flask import Flask, redirect, request, render_template
 import requests
-from dotenv import load_dotenv
 from supabase import create_client
 
-load_dotenv()
 import os
 
 
@@ -38,10 +40,10 @@ def save_token(user_id, access_token, refresh_token, expires_at):
         "refresh_token": refresh_token,
         "expires_at": expires_at
     }).execute()
-    if response.status_code != 201 and response.status_code != 200:
-        print("Error saving tokens:", response.data)
-    else:
-        print("Tokens saved successfully")
+    # if response.status_code != 201 and response.status_code != 200:
+    #     print("Error saving tokens:", response.data)
+    # else:
+    #     print("Tokens saved successfully")
 
 
 @app.route("/callback")
