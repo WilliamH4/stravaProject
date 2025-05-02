@@ -1,7 +1,20 @@
+from dotenv import load_dotenv
+import os
+from flask import Flask, redirect, request, render_template
+
+
+load_dotenv()  # Loads the .env file
+
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+REDIRECT_URI = os.getenv("REDIRECT_URI")
+
+#print(CLIENT_ID)
+
 import requests
 from datetime import datetime
 
-access_token = "2a3685738ed8488aad9fb5892f3a4843396cb41f"
+access_token = "5eefdb1a4e510cb6177aa63dbf9419a35d49c395"
 
 # === Strava API URL to fetch activities ===
 url = "https://www.strava.com/api/v3/athlete/activities"
