@@ -8,8 +8,8 @@ import requests
 url = os.getenv("SUPABASE_URL")
 key = os.getenv("SUPABASE_KEY")
 
-print("SUPABASE_URL:", url)
-print("SUPABASE_KEY:", key)
+# print("SUPABASE_URL:", url)
+# print("SUPABASE_KEY:", key)
 
 
 supabase = create_client(url, key)
@@ -20,17 +20,26 @@ REDIRECT_URI = os.getenv("REDIRECT_URI")
 
 print(CLIENT_ID)
 
-def save_token(user_id, access_token, refresh_token, expires_at, athlete):
-    response = supabase.table('user_tokens').upsert({
-        "user_id": user_id,
-        "access_token": access_token,
-        "refresh_token": refresh_token,
-        "expires_at": expires_at,
-        "athlete_firstname": athlete["firstname"],
-        "athlete_lastname": athlete["lastname"],
-        "athlete_username": athlete["username"],
-        "athlete_profile": athlete["profile"]
-    }).execute()
+def save_token(user_id, access_token, refresh_token, expires_at, athlete=" "):
+    if (athlete!=" "):
+        response = supabase.table('user_tokens').upsert({
+            "user_id": user_id,
+            "access_token": access_token,
+            "refresh_token": refresh_token,
+            "expires_at": expires_at,
+            "athlete_firstname": athlete["firstname"],
+            "athlete_lastname": athlete["lastname"],
+            "athlete_username": athlete["username"],
+            "athlete_profile": athlete["profile"]
+        }).execute()
+    else:
+        response = supabase.table('user_tokens').upsert({
+            "user_id": user_id,
+            "access_token": access_token,
+            "refresh_token": refresh_token,
+            "expires_at": expires_at
+        }).execute()
+
     # if response.status_code != 201 and response.status_code != 200:
     #     print("Error saving tokens:", response.data)
     # else:
@@ -38,5 +47,5 @@ def save_token(user_id, access_token, refresh_token, expires_at, athlete):
 
 def get_tokens(user_id):
     response = supabase.table("user_tokens").select("*").eq("user_id", user_id).single().execute()
-    print(response.data)
+    #print(response.data)
     return response.data
