@@ -57,7 +57,11 @@ def display():
     data=[]
 
     for id in ids:
-        data[i]=get_tokens(id)
+        info=get_tokens(id)
+        data[i]={
+            "name":info["athleate_firstname"],
+            "miles":10
+        }
         i+=1
 
 
