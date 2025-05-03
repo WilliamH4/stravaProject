@@ -50,7 +50,7 @@ def callback():
 
 @app.route("/display")
 def display():
-    print(getNumRows())
+    #print(getNumRows())
 
     return render_template("display.html")
 
