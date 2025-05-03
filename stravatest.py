@@ -6,12 +6,16 @@ from flask import Flask, redirect, request, render_template
 import requests
 from supabase import create_client
 
+from datetime import datetime
+
 import os
 
 #import strava
 
 from supabaseLogic import *
 import accessTokenLogic
+import strava
+import mileCalculations
 #import tableDisplay
 
 
@@ -55,11 +59,13 @@ def display():
     ids = getIds()  # Assume this returns a list of athlete IDs
     data = []
 
+
+
     for id in ids:
         info = get_tokens(id)
         data.append({
             "name": info["athlete_firstname"],  # Make sure this key exists
-            "miles": 10  # Replace this with real logic if needed
+            "miles": mileCalculations.get_miles(info['user_id'],datetime(2025,4,1),datetime(2026,1,1))
         })
 
     return render_template("diplay.html", runners=data)

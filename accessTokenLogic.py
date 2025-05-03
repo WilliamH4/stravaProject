@@ -19,7 +19,7 @@ def getAccessToken(user_id):
     if data["expires_at"]<time.time():
         data=refreshToken(user_id,data["refresh_token"])
         #print("\n\n",data)
-        supabaseLogic.save_token(user_id,data["access_token"],data["refresh_token"],data["expires_at"])
+        test=supabaseLogic.save_token(user_id,data["access_token"],data["refresh_token"],data["expires_at"])
         print('token expired')
     else:
         print('token valid\n')
