@@ -51,7 +51,9 @@ def callback():
 @app.route("/display")
 def display():
     print(getNumRows())
-    return render_template("display.html")
+    auth_url = f"https://www.strava.com/oauth/authorize?client_id={CLIENT_ID}&response_type=code&redirect_uri={REDIRECT_URI}&approval_prompt=force&scope=activity:read_all"
+
+    return render_template("display.html",auth_url=auth_url)
 
 if __name__ == "__main__":
     app.run(debug=True)
