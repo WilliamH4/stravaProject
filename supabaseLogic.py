@@ -64,7 +64,7 @@ def getIds():
     print (ids)
     return ids
 
-#get_tokens(112223774)
+get_tokens(112223774)
 
 #getIds()
 #print(getNumRows())

@@ -52,22 +52,16 @@ def callback():
 def display():
     #print(getNumRows())
 
-    ids=getIds()
-    i=0
-    data=[]
+    ids = getIds()  # Assume this returns a list of athlete IDs
+    data = []
 
     for id in ids:
-        info=get_tokens(id)
-        data[i]={
-            "name":info["athleate_firstname"],
-            "miles":10
-        }
-        i+=1
+        info = get_tokens(id)
+        data.append({
+            "name": info["athlete_firstname"],  # Make sure this key exists
+            "miles": 10  # Replace this with real logic if needed
+        })
 
-
-
-
-    return render_template("diplay.html",runners=data)
-
+    return render_template("display.html", runners=data)
 if __name__ == "__main__":
     app.run(debug=True)
