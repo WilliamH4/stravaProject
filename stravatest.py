@@ -51,7 +51,7 @@ def callback():
 @app.route("/display")
 def display():
     print(getNumRows())
-    return"this is a new page"
+    return render_template("display.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
