@@ -48,7 +48,7 @@ def save_token(user_id, access_token, refresh_token, expires_at, athlete=" "):
 
 def get_tokens(user_id):
     response = supabase.table("user_tokens").select("*").eq("user_id", user_id).single().execute()
-    #print(response.data)
+    print(response.data)
     return response.data
 
 def getNumRows():
@@ -58,4 +58,13 @@ def getNumRows():
 
     return row_count
 
-print(getNumRows())
+def getIds():
+    response = supabase.table("user_tokens").select("user_id").execute()
+    ids = [row["user_id"] for row in response.data]  
+    print (ids)
+    return ids
+
+#get_tokens(112223774)
+
+#getIds()
+#print(getNumRows())

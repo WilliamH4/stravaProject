@@ -1,32 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Strava Tracker</title>
-</head>
-<body>
-    <h1>Strava Mileage Tracker</h1>
-
-    <table>
-        <tr>
-          <th>name</th>
-          <th>miles</th>
-          <th>time</th>
-        </tr>
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Centro comercial Moctezuma</td>
-          <td>Francisco Chang</td>
-          <td>Mexico</td>
-        </tr>
-      </table>
-
-    <p>Click below to connect your Strava account:</p>
-</body>
-
-
-
+  <head>
+    <title>Running Log</title>
+  </head>
+  <body>
+    <h1>Runner Miles</h1>
+    <table border="1">
+      <tr>
+        <th>Name</th>
+        <th>Miles</th>
+      </tr>
+      {% for runner in runners %}
+      <tr>
+        <td>{{ runner.name }}</td>
+        <td>{{ runner.miles }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
 </html>

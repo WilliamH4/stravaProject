@@ -52,7 +52,18 @@ def callback():
 def display():
     #print(getNumRows())
 
-    return render_template("diplay.html")
+    ids=getIds()
+    i=0
+    data=[]
+
+    for id in ids:
+        data[i]=get_tokens(id)
+        i+=1
+
+
+
+
+    return render_template("diplay.html",runners=data)
 
 if __name__ == "__main__":
     app.run(debug=True)
