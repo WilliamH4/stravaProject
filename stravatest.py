@@ -62,6 +62,6 @@ def display():
             "miles": 10  # Replace this with real logic if needed
         })
 
-    return render_template("display.html", runners=data)
+    return render_template("diplay.html", runners=data)
 if __name__ == "__main__":
     app.run(debug=True)
