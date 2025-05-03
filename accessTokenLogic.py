@@ -24,4 +24,4 @@ def getAccessToken(user_id):
     else:
         print('token valid\n')
     return data["access_token"]
-print(getAccessToken(112223774))
+#print(getAccessToken(112223774))
