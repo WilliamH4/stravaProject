@@ -40,6 +40,7 @@ def save_token(user_id, access_token, refresh_token, expires_at, athlete=" "):
             "expires_at": expires_at
         }).execute()
 
+
     # if response.status_code != 201 and response.status_code != 200:
     #     print("Error saving tokens:", response.data)
     # else:
@@ -49,3 +50,12 @@ def get_tokens(user_id):
     response = supabase.table("user_tokens").select("*").eq("user_id", user_id).single().execute()
     #print(response.data)
     return response.data
+
+def getNumRows():
+    res = supabase.table('user_tokens').select('*', count='exact').execute()
+    row_count = res.count
+    print(f"Row count: {row_count}")
+
+    return row_count
+
+print(getNumRows())

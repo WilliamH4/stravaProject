@@ -11,6 +11,8 @@ import os
 #import strava
 
 from supabaseLogic import *
+import accessTokenLogic
+#import tableDisplay
 
 
 app = Flask(__name__)
@@ -43,8 +45,12 @@ def callback():
     print("Access Token:", token_data['access_token'])
     print("Refresh Token:", token_data['refresh_token'])
     save_token(token_data['athlete']['id'],token_data['access_token'],token_data['refresh_token'],token_data['expires_at'],token_data['athlete'] )
-    get_tokens(token_data['athlete']['id'])
+    #get_tokens(token_data['athlete']['id'])
     return "Authorization complete! Tokens printed to console. you may close this tab now"
+
+@app.route("/display")
+def display():
+    print(getNumRows())
 
 if __name__ == "__main__":
     app.run(debug=True)

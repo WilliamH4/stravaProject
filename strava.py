@@ -13,8 +13,9 @@ REDIRECT_URI = os.getenv("REDIRECT_URI")
 
 import requests
 from datetime import datetime
+import accessTokenLogic
 
-access_token = "5eefdb1a4e510cb6177aa63dbf9419a35d49c395"
+access_token = accessTokenLogic.getAccessToken(112223774)
 
 # === Strava API URL to fetch activities ===
 url = "https://www.strava.com/api/v3/athlete/activities"
