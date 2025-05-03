@@ -52,7 +52,7 @@ def callback():
 def display():
     #print(getNumRows())
 
-    return render_template("display.html")
+    return render_template("diplay.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
