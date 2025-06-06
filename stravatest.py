@@ -76,8 +76,8 @@ def display():
     weeks = list(range(1, 6))
     miles = [3.5, 4.2, 5.1, 4.0, 6.3]
     index=0
-    start_date=datetime(2025,5,5)
-    while index<5:
+    start_date=datetime(2025,18,5)
+    while index<8:
         miles[index]=mileCalculations.get_miles(112223774, start_date+timedelta(weeks=index),start_date+timedelta(weeks=index+1))
         index+=1
     ax.bar(weeks, miles)
