@@ -30,7 +30,7 @@ REDIRECT_URI = os.getenv("REDIRECT_URI")
 
 print(CLIENT_ID)
 
-@app.route("/")
+@app.route("/man")
 def index():
     auth_url = f"https://www.strava.com/oauth/authorize?client_id={CLIENT_ID}&response_type=code&redirect_uri={REDIRECT_URI}&approval_prompt=force&scope=activity:read"
     return render_template("index.html", auth_url=auth_url)
@@ -54,7 +54,7 @@ def callback():
     #get_tokens(token_data['athlete']['id'])
     return "Authorization complete! Tokens printed to console. you may close this tab now"
 
-@app.route("/display")
+@app.route("/")
 def display():
     # #print(getNumRows())
 
@@ -80,6 +80,7 @@ def display():
     start_date=datetime(2025,4,6)
     while index<numweeks:
         miles[index]=mileCalculations.get_miles(112223774, start_date+timedelta(weeks=index),start_date+timedelta(weeks=index+1))
+        print(miles[index])
         index+=1
     ax.bar(weeks, miles)
     ax.set_title("Weekly Mileage")
