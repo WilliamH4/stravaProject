@@ -30,7 +30,7 @@ print(CLIENT_ID)
 
 @app.route("/")
 def index():
-    auth_url = f"https://www.strava.com/oauth/authorize?client_id={CLIENT_ID}&response_type=code&redirect_uri={REDIRECT_URI}&approval_prompt=force&scope=activity:read_all"
+    auth_url = f"https://www.strava.com/oauth/authorize?client_id={CLIENT_ID}&response_type=code&redirect_uri={REDIRECT_URI}&approval_prompt=force&scope=activity:read"
     return render_template("index.html", auth_url=auth_url)
 
 
@@ -68,6 +68,6 @@ def display():
             "miles": mileCalculations.get_miles(info['user_id'],datetime(2025,4,1),datetime(2026,1,1))
         })
 
-    return render_template("diplay.html", runners=data)
+    return render_template("diplay.html", runners_month=_mounthdata,runners_day=day_data)
 if __name__ == "__main__":
     app.run(debug=True)
