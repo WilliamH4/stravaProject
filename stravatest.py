@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-from flask import Flask, redirect, request, render_template
+from flask import Flask, redirect, request, render_template, send_file
 import requests
 from supabase import create_client
 
@@ -17,6 +17,8 @@ import accessTokenLogic
 import strava
 import mileCalculations
 #import tableDisplay
+import matplotlib.pyplot as plt
+import io
 
 
 app = Flask(__name__)
@@ -54,20 +56,38 @@ def callback():
 
 @app.route("/display")
 def display():
-    #print(getNumRows())
+    # #print(getNumRows())
 
-    ids = getIds()  # Assume this returns a list of athlete IDs
-    data = []
+    # ids = getIds()  #this returns a list of athlete IDs
+
+    # data = []
 
 
 
-    for id in ids:
-        info = get_tokens(id)
-        data.append({
-            "name": info["athlete_firstname"],  # Make sure this key exists
-            "miles": mileCalculations.get_miles(info['user_id'],datetime(2025,4,1),datetime(2026,1,1))
-        })
+    # for id in ids:
+    #     info = get_tokens(id)
+    #     data.append({
+    #         "name": info["athlete_firstname"],  # Make sure this key exists
+    #         "miles": mileCalculations.get_miles(info['user_id'],datetime(2025,4,1),datetime(2026,1,1))
+    #     })
 
-    return render_template("diplay.html", runners_month=_mounthdata,runners_day=day_data)
+
+    fig, ax = plt.subplots()
+    weeks = list(range(1, 6))
+    miles = [3.5, 4.2, 5.1, 4.0, 6.3]
+    ax.bar(weeks, miles)
+    ax.set_title("Weekly Mileage")
+    ax.set_xlabel("Week")
+    ax.set_ylabel("Miles")
+
+    # Save to an in-memory buffer
+    buf = io.BytesIO()
+    plt.savefig(buf, format="png")
+    buf.seek(0)
+    plt.close(fig)
+
+    return send_file(buf, mimetype="image/png")
+
+    #return render_template("diplay.html", runners_month=_mounthdata,runners_day=day_data)
 if __name__ == "__main__":
     app.run(debug=True)

@@ -123,9 +123,9 @@ def calculate_weeks(activitys):
         index+=1
     print("\n")
     print("weekly miles")
-    # for week in week_data:
-    #     if week !=0:
-    #         print(week)
+    for week in week_data:
+        if week !=0:
+            print(fixed_length(str(week),5))
     #plt.theme("default")  
     
     plt.bar(weeks, week_data,marker="█")
@@ -144,6 +144,4 @@ if __name__ == "__main__":
 
 
 
-pizzas = ["Sausage", "Pepperoni", "Mushrooms", "Cheese", "Chicken", "Beef"]
-percentages = [14, 36, 11, 8, 7, 4]
 
