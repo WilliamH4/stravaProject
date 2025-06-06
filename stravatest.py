@@ -82,11 +82,12 @@ def display():
         miles[index]=mileCalculations.get_miles(112223774, start_date+timedelta(weeks=index),start_date+timedelta(weeks=index+1))
         print(miles[index])
         index+=1
+    weeks = [(start_date + timedelta(weeks=i)).strftime("%b %d") for i in range(numweeks)]
+
     ax.bar(weeks, miles)
     ax.set_title("Weekly Mileage")
     ax.set_xlabel("Week")
     ax.set_ylabel("Miles")
-    weeks = [(start_date + timedelta(weeks=i)).strftime("%b %d") for i in range(numweeks)]
 
 
     # Save to an in-memory buffer
