@@ -108,4 +108,4 @@ def get_miles(user_id,start_date,end_date):
 #     miles = get_miles(112223774,datetime(2025, 5,1),datetime(2026, 1, 1))
 #     #calculate_march_miles(activities)
 
-#get_miles(112223774,datetime(2025, 5,1),datetime(2026, 1, 1))
+get_miles(112223774,datetime(2025, 1,1),datetime(2026, 1, 1))

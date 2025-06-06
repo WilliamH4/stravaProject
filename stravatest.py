@@ -6,7 +6,7 @@ from flask import Flask, redirect, request, render_template, send_file
 import requests
 from supabase import create_client
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import os
 
@@ -75,6 +75,11 @@ def display():
     fig, ax = plt.subplots()
     weeks = list(range(1, 6))
     miles = [3.5, 4.2, 5.1, 4.0, 6.3]
+    index=0
+    start_date=datetime(2025,6,1)
+    while index<5:
+        miles[index]=mileCalculations.get_miles(112223774, start_date+timedelta(weeks=index),start_date+timedelta(weeks=index+1))
+        index+=1
     ax.bar(weeks, miles)
     ax.set_title("Weekly Mileage")
     ax.set_xlabel("Week")
