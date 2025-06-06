@@ -74,10 +74,11 @@ def display():
 
     fig, ax = plt.subplots()
     weeks = list(range(1, 6))
-    miles = [3.5, 4.2, 5.1, 4.0, 6.3]
+    numweeks=9
+    miles = [0]*numweeks
     index=0
     start_date=datetime(2025,4,6)
-    while index<9:
+    while index<numweeks:
         miles[index]=mileCalculations.get_miles(112223774, start_date+timedelta(weeks=index),start_date+timedelta(weeks=index+1))
         index+=1
     ax.bar(weeks, miles)
