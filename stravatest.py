@@ -73,8 +73,8 @@ def display():
 
 
     fig, ax = plt.subplots()
-    weeks = list(range(1, 6))
     numweeks=9
+    weeks = list(range(1, numweeks+1))
     miles = [0]*numweeks
     index=0
     start_date=datetime(2025,4,6)
