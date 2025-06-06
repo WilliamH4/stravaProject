@@ -74,10 +74,11 @@ def display():
 
     fig, ax = plt.subplots()
     numweeks=9
+    start_date=datetime(2025,4,7)
+
     weeks = [(start_date + timedelta(weeks=i)).strftime("%b %d") for i in range(numweeks)]
     miles = [0]*numweeks
     index=0
-    start_date=datetime(2025,4,7)
     while index<numweeks:
         miles[index]=mileCalculations.get_miles(112223774, start_date+timedelta(weeks=index),start_date+timedelta(weeks=index+1))
         print(miles[index])
