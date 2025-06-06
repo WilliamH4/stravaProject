@@ -35,6 +35,12 @@ headers = {
 def get_miles(user_id,start_date,end_date):
 
 
+    if start_date>datetime.now():
+        return 0
+    elif end_date>datetime.now():
+        end_date=datetime.now()
+
+
     access_token = accessTokenLogic.getAccessToken(user_id)
 
     after_timestamp = int(start_date.timestamp())
