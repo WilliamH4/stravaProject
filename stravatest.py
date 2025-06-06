@@ -76,7 +76,6 @@ def display():
     numweeks=9
     start_date=datetime(2025,4,7)
 
-    weeks = [(start_date + timedelta(weeks=i)).strftime("%b %d") for i in range(numweeks)]
     miles = [0]*numweeks
     index=0
     while index<numweeks:
@@ -87,6 +86,8 @@ def display():
     ax.set_title("Weekly Mileage")
     ax.set_xlabel("Week")
     ax.set_ylabel("Miles")
+    weeks = [(start_date + timedelta(weeks=i)).strftime("%b %d") for i in range(numweeks)]
+
 
     # Save to an in-memory buffer
     buf = io.BytesIO()
